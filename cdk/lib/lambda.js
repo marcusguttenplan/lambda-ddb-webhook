@@ -8,16 +8,16 @@ class LambdaBackendService extends Construct {
     constructor(scope, id) {
         super(scope, id);
 
-        const handler = new lambda.Function(this, "LambdaBackendServiceHandler", {
+        const handler = new lambda.Function(this, "lambda-ddb-webhook-api-handler", {
             runtime: lambda.Runtime.NODEJS_14_X,
             code: lambda.Code.fromAsset(path.join(__dirname, '/../../function')),
             handler: "index.handler",
             environment: {}
         });
 
-        const api = new apigateway.RestApi(this, "lambda-api", {
-            restApiName: "lambda Service",
-            description: "This service serves lambda."
+        const api = new apigateway.RestApi(this, "lambda-ddb-webhook-api", {
+            restApiName: "lambda DDB Webhook Service",
+            description: "This serves a lambda function that powers the DDB Webhook API."
         });
 
         const getLambdaBackendIntegration = new apigateway.LambdaIntegration(handler, {

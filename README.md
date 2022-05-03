@@ -7,6 +7,7 @@ Instructions for nodejs serverless function
 #### CDK
 
 * cdk init --language javascript
+* cdk bootstrap aws://ACCOUNT-NUMBER/REGION
 
 #### Lambda
 
@@ -15,3 +16,7 @@ Instructions for nodejs serverless function
 #### API Gateway
 
 * Create API Gateway
+
+#### DynamoDB Table
+
+* Create DDB table
