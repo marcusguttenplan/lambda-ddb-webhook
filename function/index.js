@@ -7,6 +7,34 @@ exports.handler = function(event, context, callback) {
     return context.logStreamName
 }
 
+var formatResponse = function(body) {
+    var response = {
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "isBase64Encoded": false,
+        "multiValueHeaders": {
+            "X-Custom-Header": ["My value", "My other value"],
+        },
+        "body": body
+    }
+    return response
+}
+
+var formatError = function(error) {
+    var response = {
+        "statusCode": error.statusCode,
+        "headers": {
+            "Content-Type": "text/plain",
+            "x-amzn-ErrorType": error.code
+        },
+        "isBase64Encoded": false,
+        "body": error.code + ": " + error.message
+    }
+    return response
+}
+
 
 
 
